@@ -5,9 +5,6 @@
 		  [compojure.core :refer [defroutes GET]]
           [compojure.route :refer [not-found]]))
 
-
-
-
 (defn greet [req]
 			{:status 200
 	 		:body "Hello, World2!"
@@ -18,11 +15,23 @@
 	{:status 200
 	 :body "Goodbye, cruel world!"
 	 :headers{}})
+	 
+(defn about [req]
+	{:status 200
+	 :body "My name is Nicole Spicer and this is MTV Cribs."
+	 :headers {}})
+	 
+(defn request [req]
+	{:status 200
+	 :body (pr-str req)
+	 :headers {}})
+	 
 	
 (defroutes app
 	(GET "/" [] greet)
 	(GET "/goodbye" [] goodbye)
-	
+	(GET "/about" [] about)
+	(GET "/request" [] request)
 	(not-found "Page not found."))
 
 (defn -main [port]	
